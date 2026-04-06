@@ -1,0 +1,44 @@
+server:
+  port: 4004
+
+spring:
+  cloud:
+    gateway:
+      routes:
+
+        ## http://localhost:4004/auth/login
+        ## API GATEWAY -> http://auth-service:4005/login
+        - id: auth-service-route
+          uri: http://host.docker.internal:4005
+          predicates:
+            - Path=/auth/**
+          filters:
+            - StripPrefix=1
+
+        ## REST CLIENT -> http://localhost:4004/api/subjects
+        ## API GATEWAY -> http://subject-service:4000/subjects
+        ## SUBJECT SERVICE (SPRING BOOT APP) -> /subjects -> Subjects Array
+        - id: entity-service-route
+          uri: http://host.docker.internal:4000
+          predicates:
+            - Path=/api/subjects/, /api/subjects/**
+          filters:
+            - StripPrefix=1
+            - JwtValidation
+
+          ## REST-CLIENT -> http://localhost:4004/api-docs/subjects
+          ## API-GATEWAY -> http://subject-service:4000/v3/api-docs
+        - id: api-docs-entity-route
+          uri: http://host.docker.internal:4000
+          predicates:
+            - Path=/api-docs/subjects
+          filters:
+            - RewritePath=/api-docs/subjects, /v3/api-docs
+
+
+        - id: api-docs-auth-route
+          uri: http://host.docker.internal:4005
+          predicates:
+            - Path=/api-docs/auth
+          filters:
+            - RewritePath=/api-docs/auth,/v3/api-docs

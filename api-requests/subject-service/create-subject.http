@@ -1,0 +1,14 @@
+### POST request to create subject
+POST http://lb-212f711b.elb.localhost.localstack.cloud:4000/subjects
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "name": "Jane Doe kafka",
+  "email": "test_kafkah@wexample.com",
+  "address": "123 main street",
+  "dateOfBirth": "1999-12-12",
+  "registeredDate": "2024-12-12"
+}
+
+###

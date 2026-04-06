@@ -1,0 +1,5 @@
+### GET request to get all subjects
+GET http://lb-212f711b.elb.localhost.localstack.cloud:4004/api/subjects
+Authorization: Bearer {{token}}
+
+###

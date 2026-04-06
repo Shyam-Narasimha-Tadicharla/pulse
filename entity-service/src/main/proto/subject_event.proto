@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package subject.events;
+option java_multiple_files = true;
+
+message SubjectEvent {
+  string subjectId = 1;
+  string name = 2;
+  string email = 3;
+  string event_type = 4;
+}
