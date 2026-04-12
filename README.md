@@ -1,5 +1,3 @@
-# PULSE — Microservices Platform
-
 A distributed microservices system built with Java 21 and Spring Boot. PULSE manages entities (subjects) across 5 independently deployable services communicating via REST, gRPC, and Kafka. Each service is containerized with Docker and routed through a central API Gateway with JWT authentication.
 
 ---
@@ -180,9 +178,7 @@ Not deployed yet. Each service has a `Dockerfile` ready for containerized deploy
 
 ---
 
-## Assumptions & Notes
 
-- The `auth-service` password validation logic is in `AuthService.java` / `UserService.java` — assumed to use BCrypt based on Spring Security config, though not verified
 - The `analytics-service` logs events but does not persist them — analytics storage would be the next extension point
 - Each service has its own `pom.xml`; there is no parent multi-module Maven POM (each service is built independently)
 - IntelliJ IDEA HTTP client request files are stored in `.idea/httpRequests/` and `api-requests/` for local testing reference
@@ -192,4 +188,3 @@ Not deployed yet. Each service has a `Dockerfile` ready for containerized deploy
 ## Author
 
 **Shyam Narasimha Tadicharla**
-GitHub: [Shyam-Narasimha-Tadicharla](https://github.com/Shyam-Narasimha-Tadicharla) | LinkedIn: [shyam-narasimha-tadicharla-750b6727a](https://www.linkedin.com/in/shyam-narasimha-tadicharla-750b6727a/)
